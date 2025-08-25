@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Portal Técnico </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Portal Técnico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    :root { color-scheme: dark; }
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,200 +17,203 @@
       padding: 40px 20px;
       color: #fff;
     }
-
     .container {
       background-color: rgba(255, 255, 255, 0.05);
       padding: 30px;
       border-radius: 16px;
       width: 100%;
-      max-width: 480px;
+      max-width: 520px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       backdrop-filter: blur(10px);
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    label {
-      display: block;
-      margin: 12px 0 4px;
-    }
-
+    h2 { text-align: center; margin: 0 0 8px; }
+    .sub { text-align: center; margin: 0 0 24px; opacity: .85; font-weight: 500; }
+    label { display: block; margin: 12px 0 6px; font-weight: 600; }
     select, input {
       width: 100%;
       padding: 10px;
       border: none;
       border-radius: 6px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: white;
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #fff;
       font-size: 1em;
+      outline: 1px solid rgba(255,255,255,0.15);
     }
-
-    input::placeholder {
-      color: #ccc;
-    }
-
-    select option {
-      color: black;
-    }
-
+    input::placeholder { color: #ccc; }
+    select option { color: #111; }
     button {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 12px;
       background-color: #00aaff;
       border: none;
       border-radius: 6px;
-      color: white;
+      color: #fff;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: filter .2s ease;
     }
-
-    button:hover {
-      background-color: #008fcc;
-    }
-
+    button:hover { filter: brightness(0.92); }
     #dataHora {
       text-align: center;
-      margin-top: 20px;
-      font-size: 0.9em;
-      color: #aaa;
+      margin-top: 14px;
+      font-size: 0.92em;
+      color: #cfcfcf;
     }
-
     #infoProgramacao {
-      margin-top: 30px;
+      margin-top: 24px;
       padding: 15px;
       background-color: rgba(255,255,255,0.1);
       border-radius: 8px;
       display: none;
-      position: relative;
     }
-
     #infoProgramacao a {
       display: block;
       margin-top: 10px;
       color: #00aaff;
       text-align: center;
       text-decoration: underline;
+      word-break: break-all;
     }
-
-.copy-button {
-      position: relative;
+    .copy-button {
       display: block;
-      margin: 0 auto 10px auto;
+      width: 100%;
       background-color: #00aaff;
       border: none;
-      color: white;
-      padding: 8px 20px;
+      color: #fff;
+      padding: 10px 12px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 0.85em;
-      text-align: center;
+      font-size: 0.95em;
+      font-weight: 600;
     }
-
-    .copy-button:hover {
-      background-color: #008fcc;
-    }
-
+    .copy-button:hover { filter: brightness(0.92); }
     textarea.preview {
-      width: 95%;
-      height: 100px;
-      margin-top: 15px;
+      width: 100%;
+      height: 120px;
+      margin-top: 12px;
       padding: 10px;
       border-radius: 6px;
       resize: none;
       background-color: rgba(255,255,255,0.1);
-      color: white;
-      font-family: inherit;
+      color: #fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 0.95em;
       border: none;
+      outline: 1px solid rgba(255,255,255,0.15);
     }
-
-    @media screen and (max-width: 500px) {
-      .container {
-        padding: 20px;
-      }
-
-      .copy-button {
-        top: 10px;
-        right: 10px;
-        padding: 8px 14px;
-        font-size: 0.85em;
-      }
+    .muted { color: #bbb; text-align: center; margin-top: 10px; }
+    @media (max-width: 500px) {
+      .container { padding: 20px; }
     }
   </style>
 </head>
 <body onload="iniciarRelogio()">
   <div class="container">
     <h2>Consulta de Programação</h2>
-    <h2>TORRE WESLLEY</h2>
+    <p class="sub">POSITIVO TECNOLOGIA</p>
 
     <label for="base">Base de Atendimento:</label>
-    <select id="base" onchange="atualizarTecnicos()">
+    <select id="base" onchange="atualizarTecnicos()" aria-label="Base de Atendimento">
       <option value="">Selecione a base</option>
       <option value="Sorocaba">Sorocaba</option>
       <option value="Campinas">Campinas</option>
-
+      <option value="SP_Zona_Norte">SP - Zona Norte</option>
+      <option value="SP_Zona_Centro">SP - Zona Centro</option>
+      <option value="SP_Zona_Oeste">SP - Zona Oeste</option>
     </select>
 
     <label for="tecnico">Técnico:</label>
-    <select id="tecnico">
+    <select id="tecnico" aria-label="Técnico">
       <option value="">Selecione o técnico</option>
     </select>
 
     <label for="senha">Senha:</label>
-    <input type="password" id="senha" placeholder="Digite sua senha" />
+    <input type="password" id="senha" placeholder="Digite sua senha" aria-label="Senha" />
 
-    <div id="dataHora">Data/Hora atual:</div>
+    <div id="dataHora" aria-live="polite">Data/Hora atual:</div>
 
     <button onclick="consultarInfo()">Consultar Programação</button>
 
     <div id="infoProgramacao"></div>
+    <p class="muted">Dica: selecione a base, escolha o técnico, informe a senha e clique em “Consultar”.</p>
   </div>
 
   <script>
- const tecnicosPorBase = {
-    Sorocaba: [
-      "Leone Henrique Da Silva Santos","Stefany Dias Rossi", "Everson Da Silva Soares", "Vagner De Souza Barbosa",
-     "Clovis Ouchar Júnior","Gabriel Amorim Fogaça De Sousa", "Heleno Meira Dos Santos", "Ian Garcia Da Costa",
-      "Márcio Santos Santana", "Rafael De Lima Santana", "Elias Rodrigues Boaventura Cunha"
-    ],
-    Campinas: [
-      "Vinicius Dacio Da Silva", "Saulo Emmanuel Dos Santos Brito",
-      "Ricardo Rocha De Souza", "Matheus Nielsen Ferraz", "Mateus Vinicius Rodrigues Batista", "Gabriel Leonardo Oliveira Ozorio",
-      "Filipi De Almeida Mamoni", "Bruno Rafael Nascimento Gonçalves", "Alexandre Matias Carvalho Lima", "Marcus Pablo Gongora", "Diogo De Souza Ceccon", "Marlon Waslley Mendes", "Wesley Machado",
-    ],
+    // Mapeamento de técnicos por base
+    const tecnicosPorBase = {
+      Sorocaba: [
+        "Leone Henrique Da Silva Santos","Stefany Dias Rossi","Everson Da Silva Soares","Vagner De Souza Barbosa",
+        "Clovis Ouchar Júnior","Gabriel Amorim Fogaça De Sousa","Heleno Meira Dos Santos",
+        "Ian Garcia Da Costa","Márcio Santos Santana","Rafael De Lima Santana","Elias Rodrigues Boaventura Cunha"
+      ],
+      Campinas: [
+        "Vinicius Dacio Da Silva","Saulo Emmanuel Dos Santos Brito","Ricardo Rocha De Souza","Matheus Nielsen Ferraz",
+        "Mateus Vinicius Rodrigues Batista","Gabriel Leonardo Oliveira Ozorio","Filipi De Almeida Mamoni",
+        "Bruno Rafael Nascimento Gonçalves","Alexandre Matias Carvalho Lima","Marcus Pablo Gongora",
+        "Diogo De Souza Ceccon","Marlon Waslley Mendes Da Silva","Wesley Machado Da Silva"
+      ],
+      SP_Zona_Norte: [
+        "ANTONIO FAGNER BASTOS DE SOUZA","DIOGENES TADEU GRACIANO","GABRIEL DE SOUZA NASCIMENTO",
+        "JACIANO SEBASTIAO DE OLIVEIRA","RAFAEL DE FREITAS SILVA MENEZES","RUBENS JUNIO FERREIRA VITALINO",
+        "WILLIANS SANTOS DE PANTAS","WILSON JOSE DE SANTANA"
+      ],
+      SP_Zona_Centro: [
+        "GABRIEL PAGLIA"
+      ],
+      SP_Zona_Oeste: [
+        "CAIQUE RIBEIRO DOS SANTOS","DAVID HARISON DIAS DA SILVA","FERNANDO VIEIRA ALMEIDA",
+        "GUSTAVO GUIMARAES COSTA SILVA","LUCAS CARVALHO PAIVA DA SILVA","MATHEUS VINICIUS SILVEIRA DE CAMPOS",
+        "MICHEL DA SILVA GOMES","RODRIGO PINHEIRO DE AZEVEDO","VICTOR HUGO LIMA DA SILVA",
+        "WILLIAM MARTINS DE OLIVEIRA","DOUGLAS JOSE MATOS"
+      ]
+    };
 
-  };
-
-  const credenciais = {
-
-    <!-- Tecnicos Torre Weslley -->
+    // Credenciais por técnico (NÃO usar comentários HTML aqui)
+    const credenciais = {
+      // Tecnicos Torre Weslley
       "Alexandre Matias Carvalho Lima": { senha: "152", info: "50013579344, 50013579349, 50013596311, 50013596382, 50013596419, 50013596533, 50013596544, 50013596643, 50013596671, 50013591964, 50013592183", link: "https://maps.app.goo.gl/iX3WQHrr7Jte3wXq6" },
-"Bruno Rafael Nascimento Gonçalves": { senha: "991", info: "50013576821, 50013577880, 50013593528, 50013594590, 50013594653, 50013596563, 50013596668, 50013596694, 50013596727, 50013596842, 50013599100, 50013553664, 50013553670, 50013595004", link: "https://maps.app.goo.gl/nhY99gHkrh48ikfv8" },
-"Clovis Ouchar Júnior": { senha: "336", info: "50013593046, 50013574387, 50013592488, 50013565292, 50013588134, 50013595446, 50013597862, 50013597176", link: "https://maps.app.goo.gl/pAy6B2PafBfeM2Be9" },
-"Diogo De Souza Ceccon": { senha: "366", info: "50013590027, 50013564578, 50013590033, 50013590034, 50013590924, 50013596466, 50013596490, 50013558666, 50013598465, 50013598629, 50013597801, 60006102419", link: "Sem Programação" },
-"Everson Da Silva Soares": { senha: "308", info: "60006094254, 60006069950", link: "https://maps.app.goo.gl/mvma1E4b83XddAKYA" },
-"Filipi De Almeida Mamoni": { senha: "494", info: "60006098927, 60006099794, 60006100017, 60006101565, 60006102428, 60006103255, 60006103507, 60006101863", link: "XXX" },
-"Gabriel Amorim Fogaça De Sousa": { senha: "420", info: "50013595000, 50013600321, 50013600329, 50013600334, 50013600337", link: "SEM" },
-"Heleno Meira Dos Santos": { senha: "268", info: "50013598457, 50013598466, 50013598472, 50013598477, 50013598501, 50013598504, 50013597245, 50013597289, 50013597612, 50013597633", link: "https://maps.app.goo.gl/w8yjYdsj1zgHH55x8" },
-"Leone Henrique Da Silva Santos": { senha: "448", info: "50013568602, 50013600306, 50013596325, 50013596486, 50013590159, 50013598488, 50013598535, 50013586240", link: "https://maps.app.goo.gl/Tkuihfrh7ocyF6fM6" },
-"Márcio Santos Santana": { senha: "946", info: "50013594779, 50013594807, 50013594865, 50013594973, 50013588981, 50013592565, 50013578877, 50013578956", link: "https://maps.app.goo.gl/M3zJAkkVsX9DB9759" },
-"Marcus Pablo Gongora": { senha: "215", info: "50013543679, 60006092399, 60006102859, 60006102904, 60006103896, 50013549965, 50013573795", link: "Sem" },
-"Marlon Waslley Mendes Da Silva": { senha: "410", info: "60006092366, 60006101686, 60006101969", link: "Sem Programação" },
-"Matheus Nielsen Ferraz": { senha: "477", info: "50013578572, 50013524618, 50013524644, 50013524664, 50013524722, 50013524764, 50013524766, 50013579162, 50013551822, 50013530758, 50013555232, 50013573745, 50013541417", link: "https://maps.app.goo.gl/iFWFxRkAfURrYbBG6" },
-"Rafael De Lima Santana": { senha: "462", info: "50013597854, 50013596436, 50013596941, 50013584540, 50013599256, 50013554271, 50013586864", link: "https://maps.app.goo.gl/pLAFgzmo9r54Tnu18" },
-"Ricardo Rocha De Souza": { senha: "227", info: "50013596219, 50013588749, 50013589949, 50013599315, 50013599665, 50013600355, 50013578826, 50013593490, 50013596701, 50013596724, 50013596892, 50013590409, 60006085353", link: "https://maps.app.goo.gl/MZmnwKXEv1TTxoNP7" },
-"Saulo Emmanuel Dos Santos Brito": { senha: "215", info: "50013585124, 50013585147, 50013585150, 50013585154, 50013585159, 50013585172, 50013585186, 50013585205", link: "https://maps.app.goo.gl/N88S1ob3dWxqYhuG7" },
-"Stefany Dias Rossi": { senha: "410", info: "50013565828, 50013566327, 50013559730, 50013563419, 50013564931, 50013540503, 50013540527, 50013540541, 50013540786, 50013541589, 50013525998, 50013532978, 50013532980, 50013585494, 50013530361", link: "https://maps.app.goo.gl/31YrDCdYLJ6D82tp8" },
-"Vagner De Souza Barbosa": { senha: "367", info: "50013597824, 50013597833, 50013597839, 50013597861, 50013597874, 50013597881, 50013597890, 50013597852", link: "https://maps.app.goo.gl/mMhaDrxM9EoDzvDA7" },
-"Vinicius Dacio Da Silva": { senha: "525", info: "50013577940, 50013574395, 50013525802, 50013568857, 50013568864, 50013562192, 50013572136, 50013534377, 50013527411, 50013555536, 50013555795, 50013569444, 50013542985, 50013568244", link: "https://maps.app.goo.gl/VeBb7UZkbexFku9q7" },
-"Wesley Machado Da Silva": { senha: "448", info: "60006071370, 60006052385, 60006089779, 60006100042, 60006101487, 60006102828, 60006103201, 60006080281, 60006083462, 60006065305", link: "Sem Programação" }
+      "Bruno Rafael Nascimento Gonçalves": { senha: "991", info: "50013576821, 50013577880, 50013593528, 50013594590, 50013594653, 50013596563, 50013596668, 50013596694, 50013596727, 50013596842, 50013599100, 50013553664, 50013553670, 50013595004", link: "https://maps.app.goo.gl/nhY99gHkrh48ikfv8" },
+      "Clovis Ouchar Júnior": { senha: "336", info: "50013593046, 50013574387, 50013592488, 50013565292, 50013588134, 50013595446, 50013597862, 50013597176", link: "https://maps.app.goo.gl/pAy6B2PafBfeM2Be9" },
+      "Diogo De Souza Ceccon": { senha: "366", info: "50013590027, 50013564578, 50013590033, 50013590034, 50013590924, 50013596466, 50013596490, 50013558666, 50013598465, 50013598629, 50013597801, 60006102419", link: "" },
+      "Everson Da Silva Soares": { senha: "308", info: "60006094254, 60006069950", link: "https://maps.app.goo.gl/mvma1E4b83XddAKYA" },
+      "Filipi De Almeida Mamoni": { senha: "494", info: "60006098927, 60006099794, 60006100017, 60006101565, 60006102428, 60006103255, 60006103507, 60006101863", link: "" },
+      "Gabriel Amorim Fogaça De Sousa": { senha: "420", info: "50013595000, 50013600321, 50013600329, 50013600334, 50013600337", link: "" },
+      "Heleno Meira Dos Santos": { senha: "268", info: "50013598457, 50013598466, 50013598472, 50013598477, 50013598501, 50013598504, 50013597245, 50013597289, 50013597612, 50013597633", link: "https://maps.app.goo.gl/w8yjYdsj1zgHH55x8" },
+      "Leone Henrique Da Silva Santos": { senha: "448", info: "50013568602, 50013600306, 50013596325, 50013596486, 50013590159, 50013598488, 50013598535, 50013586240", link: "https://maps.app.goo.gl/Tkuihfrh7ocyF6fM6" },
+      "Márcio Santos Santana": { senha: "946", info: "50013594779, 50013594807, 50013594865, 50013594973, 50013588981, 50013592565, 50013578877, 50013578956", link: "https://maps.app.goo.gl/M3zJAkkVsX9DB9759" },
+      "Marcus Pablo Gongora": { senha: "215", info: "50013543679, 60006092399, 60006102859, 60006102904, 60006103896, 50013549965, 50013573795", link: "" },
+      "Marlon Waslley Mendes Da Silva": { senha: "410", info: "60006092366, 60006101686, 60006101969", link: "" },
+      "Matheus Nielsen Ferraz": { senha: "477", info: "50013578572, 50013524618, 50013524644, 50013524664, 50013524722, 50013524764, 50013524766, 50013579162, 50013551822, 50013530758, 50013555232, 50013573745, 50013541417", link: "https://maps.app.goo.gl/iFWFxRkAfURrYbBG6" },
+      "Rafael De Lima Santana": { senha: "462", info: "50013597854, 50013596436, 50013596941, 50013584540, 50013599256, 50013554271, 50013586864", link: "https://maps.app.goo.gl/pLAFgzmo9r54Tnu18" },
+      "Ricardo Rocha De Souza": { senha: "227", info: "50013596219, 50013588749, 50013589949, 50013599315, 50013599665, 50013600355, 50013578826, 50013593490, 50013596701, 50013596724, 50013596892, 50013590409, 60006085353", link: "https://maps.app.goo.gl/MZmnwKXEv1TTxoNP7" },
+      "Saulo Emmanuel Dos Santos Brito": { senha: "215", info: "50013585124, 50013585147, 50013585150, 50013585154, 50013585159, 50013585172, 50013585186, 50013585205", link: "https://maps.app.goo.gl/N88S1ob3dWxqYhuG7" },
+      "Stefany Dias Rossi": { senha: "410", info: "50013565828, 50013566327, 50013559730, 50013563419, 50013564931, 50013540503, 50013540527, 50013540541, 50013540786, 50013541589, 50013525998, 50013532978, 50013532980, 50013585494, 50013530361", link: "https://maps.app.goo.gl/31YrDCdYLJ6D82tp8" },
+      "Vagner De Souza Barbosa": { senha: "367", info: "50013597824, 50013597833, 50013597839, 50013597861, 50013597874, 50013597881, 50013597890, 50013597852", link: "https://maps.app.goo.gl/mMhaDrxM9EoDzvDA7" },
+      "Vinicius Dacio Da Silva": { senha: "525", info: "50013577940, 50013574395, 50013525802, 50013568857, 50013568864, 50013562192, 50013572136, 50013534377, 50013527411, 50013555536, 50013555795, 50013569444, 50013542985, 50013568244", link: "https://maps.app.goo.gl/VeBb7UZkbexFku9q7" },
+      "Wesley Machado Da Silva": { senha: "448", info: "60006071370, 60006052385, 60006089779, 60006100042, 60006101487, 60006102828, 60006103201, 60006080281, 60006083462, 60006065305", link: "" },
 
-
+      // Técnicos SP (placeholders “Sem Programação”)
+      "ANTONIO FAGNER BASTOS DE SOUZA": { senha: "000", info: "Sem Programação", link: "" },
+      "CAIQUE RIBEIRO DOS SANTOS": { senha: "000", info: "Sem Programação", link: "" },
+      "DAVID HARISON DIAS DA SILVA": { senha: "000", info: "Sem Programação", link: "" },
+      "DIOGENES TADEU GRACIANO": { senha: "000", info: "Sem Programação", link: "" },
+      "FERNANDO VIEIRA ALMEIDA": { senha: "000", info: "Sem Programação", link: "" },
+      "GABRIEL DE SOUZA NASCIMENTO": { senha: "000", info: "Sem Programação", link: "" },
+      "GABRIEL PAGLIA": { senha: "000", info: "Sem Programação", link: "" },
+      "GUSTAVO GUIMARAES COSTA SILVA": { senha: "000", info: "Sem Programação", link: "" },
+      "JACIANO SEBASTIAO DE OLIVEIRA": { senha: "000", info: "Sem Programação", link: "" },
+      "LUCAS CARVALHO PAIVA DA SILVA": { senha: "000", info: "Sem Programação", link: "" },
+      "MATHEUS VINICIUS SILVEIRA DE CAMPOS": { senha: "000", info: "Sem Programação", link: "" },
+      "MICHEL DA SILVA GOMES": { senha: "000", info: "Sem Programação", link: "" },
+      "RAFAEL DE FREITAS SILVA MENEZES": { senha: "000", info: "Sem Programação", link: "" },
+      "RODRIGO PINHEIRO DE AZEVEDO": { senha: "000", info: "Sem Programação", link: "" },
+      "RUBENS JUNIO FERREIRA VITALINO": { senha: "000", info: "Sem Programação", link: "" },
+      "VICTOR HUGO LIMA DA SILVA": { senha: "000", info: "Sem Programação", link: "" },
+      "WILLIAM MARTINS DE OLIVEIRA": { senha: "000", info: "Sem Programação", link: "" },
+      "WILLIANS SANTOS DE PANTAS": { senha: "000", info: "Sem Programação", link: "" },
+      "WILSON JOSE DE SANTANA": { senha: "000", info: "Sem Programação", link: "" },
+      "DOUGLAS JOSE MATOS": { senha: "000", info: "Sem Programação", link: "" }
     };
 
     function atualizarTecnicos() {
@@ -227,102 +231,55 @@
     }
 
     function iniciarRelogio() {
-      setInterval(() => {
+      const el = document.getElementById("dataHora");
+      const tick = () => {
         const d = new Date();
-        document.getElementById("dataHora").innerText =
-          `Data/Hora atual: ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
-      }, 1000);
+        el.textContent = `Data/Hora atual: ${d.toLocaleString('pt-BR')}`;
+      };
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    function isValidHttpUrl(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "http:" || url.protocol === "https:";
+      } catch {
+        return false;
+      }
     }
 
     function consultarInfo() {
       const tecnico = document.getElementById("tecnico").value;
       const senha = document.getElementById("senha").value;
 
-      if (!tecnico) return alert("Selecione o técnico.");
-      if (!credenciais[tecnico]) return alert("Técnico não configurado.");
-      if (senha !== credenciais[tecnico].senha) return alert("Senha incorreta.");
+      if (!tecnico) { alert("Selecione o técnico."); return; }
+      const cred = credenciais[tecnico];
+      if (!cred) { alert("Técnico não configurado."); return; }
+      if (senha !== String(cred.senha)) { alert("Senha incorreta."); return; }
 
-      const info = credenciais[tecnico].info;
-      const link = credenciais[tecnico].link;
+      const info = cred.info ?? "";
+      const link = cred.link ?? "";
 
       const infoDiv = document.getElementById("infoProgramacao");
- infoDiv.innerHTML = `
-  <button class="copy-button" onclick="copiarInfo()">Copiar</button>
-  <textarea class="preview" id="textoInfo" readonly>${info}</textarea>
-  <a href="${link}" target="_blank">Abrir Rota no Circuit</a>
-`;
+      const linkHtml = isValidHttpUrl(link)
+        ? `<a href="${link}" target="_blank" rel="noopener noreferrer">Abrir rota no Google Maps</a>`
+        : `<div class="muted">Sem programação de rota.</div>`;
 
+      infoDiv.innerHTML = `
+        <button class="copy-button" onclick="copiarInfo()">Copiar lista de ocorrências</button>
+        <textarea class="preview" id="textoInfo" readonly>${info}</textarea>
+        ${linkHtml}
+      `;
       infoDiv.style.display = "block";
     }
 
-function copiarInfo() {
-  const texto = document.getElementById("textoInfo").value;
-  navigator.clipboard.writeText(texto).then(() => {
-    alert("Informação copiada com sucesso!");
-  });
-}
-
+    function copiarInfo() {
+      const texto = document.getElementById("textoInfo")?.value ?? "";
+      navigator.clipboard.writeText(texto)
+        .then(() => alert("Informações copiadas com sucesso!"))
+        .catch(() => alert("Não foi possível copiar. Verifique permissões do navegador."));
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
