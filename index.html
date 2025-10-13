@@ -172,7 +172,7 @@
   <script>
 
     // --- Funções para buscar dados dinâmicos da API ---
-    const API_BASE = "https://356800ecd34cec0391235d2ae53e65.e5.environment.api.powerplatform.com";
+    const API_BASE = "https://6028976d8fe6e979b6d4ed0db4e8dc.e9.environment.api.powerplatform.com";
     const API_KEY = "XeiDxZXC5vcqAlPQY9eBcIJQU3Dst3rm8xCqLyDsoKBWvS8vca56YRz8WLmbzmFxWouQvxCy6Zkyjx3QG1wXtYJZ9kHuERhLg6QVTHJ9zlfaYvkDSe34m4bdQkayyvTh";
 
     async function carregarTorresETecnicos() {
@@ -190,7 +190,7 @@
       torreSelect.disabled = true;
       torreSelect.innerHTML = '<option value="">Carregando torres...</option>';
       try {
-        const url = `${API_BASE}/powerautomate/automations/direct/workflows/7ef902fb54954a44b22959f40a1d1646/triggers/manual/paths/invoke/geo_dispatch/torres?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UljeOrc4KiFNpMGV3krBEvViOH3GitkKRFOmEAbzduM`;
+        const url = `${API_BASE}/powerautomate/automations/direct/workflows/e8626ead9df342dcb5d21c17fc650b54/triggers/manual/paths/invoke/geo_dispatch/torres?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=tngVQdZR2qrKGvWE6QSYoCZAttcydlDW2EFh0cKPBBQ`;
         const resp = await fetch(url, {
           headers: { "x-api-key": API_KEY }
         });
@@ -276,7 +276,7 @@
       infoDiv.style.display = "block";
 
       try {
-        const url = `${API_BASE}/powerautomate/automations/direct/workflows/8a725b7732c1415890ec34e5545bd798/triggers/manual/paths/invoke/geo_dispatch/rotas?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JlRLP_r-rsL1mAglXwY8PDyNkTT_0jRiXbfTa7zXIg0`;
+        const url = `${API_BASE}/powerautomate/automations/direct/workflows/2d3f9f4e800e42f5881b573a655c3cb6/triggers/manual/paths/invoke/geo_dispatch/rotas?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ERTbsWnaM5ft_h9zFu0kY4qjsfPAqGnIirmlCt6jbUU`;
         const resp = await fetch(url, {
           method: 'POST',
           headers: {
